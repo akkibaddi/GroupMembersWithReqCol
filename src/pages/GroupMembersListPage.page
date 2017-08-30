@@ -2,7 +2,7 @@
 
     <apex:form id="mainForm">
 
-        <apex:pageBlock id="mainPageBlock" title="Queue Members">
+        <apex:pageBlock id="mainPageBlock" title="Group Members">
             
             <apex:pageMessages />
 
