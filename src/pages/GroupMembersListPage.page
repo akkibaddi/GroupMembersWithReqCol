@@ -1,0 +1,45 @@
+<apex:page controller="GroupMembersController" title="Group Members" sidebar="false" docType="html-5.0">
+
+    <apex:form id="mainForm">
+
+        <apex:pageBlock id="mainPageBlock" title="Queue Members">
+            
+            <apex:pageMessages />
+
+         
+            
+            <apex:pageBlockSection >
+
+                <apex:pageBlockSectionItem >
+                    <b>Group:</b>
+                    <apex:selectList value="{!groupId}" size="1">
+                        <apex:selectOptions value="{!groupOptions}"/>
+                        <apex:actionSupport event="onchange" action="{!refresh}" reRender="mainForm"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+            <apex:variable var="rowCounter" value="1"/>
+            <apex:pageBlockTable value="{!groupMembers}" var="user" rendered="{!(groupId != null)}">
+                
+                <apex:column headerValue="#">
+                    <apex:outputText value="{!rowCounter}"/>.
+                    <apex:variable var="rowCounter" value="{!VALUE(rowCounter) + 1}"/>
+                </apex:column>
+                
+               
+                
+               
+                <apex:column value="{!user.firstname}" headerValue="First Name"/>
+                <apex:column value="{!user.lastname}" headerValue="Last Name"/>
+                <apex:column value="{!user.userRole.name}" headerValue="Role"/>
+                <apex:column value="{!user.lastloginDate}" headerValue="Lat Login Date"/>
+                
+            </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>
